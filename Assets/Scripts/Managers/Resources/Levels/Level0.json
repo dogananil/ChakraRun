@@ -1,0 +1,24 @@
+{
+  "platforms": [
+    {
+      "obstacles": [
+        {
+          "position": "1-2"
+        },
+        {
+          "position": "2-3"
+        }
+      ],
+      "collectables": [
+        {
+          "position": "1-2"
+        },
+        {
+          "position": "2-3"
+        }
+      ]
+    }
+  ],
+  "winGold": 100,
+  "minimumGold": 50
+}
