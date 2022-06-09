@@ -44,13 +44,12 @@ public class ButtonHandler : MonoBehaviour
     }
     public void btn_NextLevelClick()
     {
-        Debug.Log("NEXT CLICK");
         StartCoroutine(goldAnimation());
-        /*UiManager.instance.fx_WinConfetti.SetActive(false);
-        UiManager.instance.powerUpImage.fillAmount = 0;*/
+        UiManager.instance.fx_WinConfetti.SetActive(false);
+        PoolManager.instance.ResetPool();
+        /*UiManager.instance.powerUpImage.fillAmount = 0;*/
 
-
-        /*GameManager.levelNumber++;
+        GameManager.levelNumber++;
         PlayerPrefs.SetInt("LevelNumber", GameManager.levelNumber);
 
         if (GameManager.levelNumber > GameManager.totalLevelCount)
@@ -59,27 +58,27 @@ public class ButtonHandler : MonoBehaviour
         }
         GameManager.ResetDefaults();
         GameManager.totalGold += GameManager.winGold;
-        PlayerPrefs.SetInt("Gold", GameManager.totalGold);
-        PlayerPrefs.Save();*/
+        GameManager.SavePrefs();
 
-       // UiManager.instance.winScreenPanel.SetActive(false);
 
-        //LevelManager.instance.CreateLevel();
+        UiManager.instance.winScreenPanel.SetActive(false);
 
-        //UiManager.instance.StartPanel.SetActive(true);
+        LevelManager.instance.CreateLevel();
+
+       UiManager.instance.StartPanel.SetActive(true);
     }
     public void btn_RestartLevelClick()
     {
-        //PoolManager.instance.ResetPool();
-        UiManager.instance.powerUpImage.fillAmount = 0;
-        
-        /*GameManager.totalGold += GameManager.loseGold;
-        PlayerPrefs.SetInt("Gold", GameManager.totalGold);
-        PlayerPrefs.Save();*/
+        PoolManager.instance.ResetPool();
+        //UiManager.instance.powerUpImage.fillAmount = 0;
+
+        GameManager.ResetDefaults();
+        GameManager.totalGold += GameManager.minimumGold;
+        GameManager.SavePrefs();
 
         UiManager.instance.loseScreenPanel.SetActive(false);
 
-        //LevelManager.instance.CreateLevel();
+        LevelManager.instance.CreateLevel();
 
         UiManager.instance.StartPanel.SetActive(true);
 

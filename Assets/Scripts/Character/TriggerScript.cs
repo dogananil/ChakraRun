@@ -9,12 +9,11 @@ public class TriggerScript : MonoBehaviour
         if (other.tag == "CollectableObject")
         {
             other.gameObject.SetActive(false);
+            
         }
         else if (other.tag == "ObstacleObject")
         {
             Character.instance.PlayObstacleDamageAnimation();
-            //character.ChangeAnimation(isHited: true);
-            //character.ChangeAnimation(isHited: false);
             other.gameObject.SetActive(false);
         }
         else if (other.tag == "LevelEnd")
@@ -30,14 +29,19 @@ public class TriggerScript : MonoBehaviour
         float timeLapse = 0f;
         float totalTime = 1f;
         Vector3 characterStartLocation = Character.instance.transform.position;
+        Vector3 characterEndLocation = other.gameObject.transform.GetComponent<Renderer>().bounds.center;
         while (timeLapse <= totalTime)
         {
             Character.instance.transform.position = Vector3.Lerp(characterStartLocation,
-                other.gameObject.transform.GetComponent<Renderer>().bounds.center,
+                characterEndLocation,
                 timeLapse / totalTime);
+
+            if (Vector3.Distance(Character.instance.transform.position, characterEndLocation) < 1f)
+                break;
 
             timeLapse += Time.deltaTime;
             yield return null;
         }
+        yield return null;
     }
 }

@@ -15,14 +15,13 @@ public class UiManager : MonoBehaviour
     public GameObject winScreenPanel;
     public GameObject loseScreenPanel;
 
+
     public Image powerUpImage;
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI winGoldText;
     public TextMeshProUGUI loseGoldText;
-    public TextMeshProUGUI unitBuyGoldText;
-    public TextMeshProUGUI fullText;
 
     private void Awake()
     {
