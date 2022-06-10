@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public int characterLevel = 0;
+    public int chakraLevel = 1;
     public Animator animator;
-    public static Character instance;
+    public static Character instance; 
+    public List<GameObject> charakras = new List<GameObject>();
+
     private void Awake()
     {
         if (instance == null)

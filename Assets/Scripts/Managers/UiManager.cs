@@ -15,8 +15,11 @@ public class UiManager : MonoBehaviour
     public GameObject winScreenPanel;
     public GameObject loseScreenPanel;
 
+    public Image imgGold;
 
-    public Image powerUpImage;
+    public List<Image> chakraImages;
+    public Image chakraFillBar;
+    public TextMeshProUGUI tapText;
 
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI goldText;

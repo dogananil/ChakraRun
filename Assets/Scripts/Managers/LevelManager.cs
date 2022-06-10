@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     public GameObject mainParent;
 
     private Vector3 mainParentDefaultTransform = new Vector3(0f, 0f, 1f);
-    private Vector3 platformDefaultTransform = new Vector3(0f, 0f, 30f);
+    private Vector3 platformDefaultTransform = new Vector3(0f, 0f, 60f);
 
 
 
@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
             PoolManager.instance.platforms.RemoveAt(PoolManager.instance.platforms.Count - 1);
 
             tempPlatform.transform.SetParent(platformParent.transform);
-            tempPlatform.transform.localPosition = new Vector3(0f, 0f, 30f * platformIndex);
+            tempPlatform.transform.localPosition = platformDefaultTransform * platformIndex;
             tempPlatform.transform.gameObject.SetActive(true);
 
             foreach (var collectable in platform.collectables)
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
                 PoolManager.instance.collectables.RemoveAt(PoolManager.instance.collectables.Count - 1);
 
                 tempCollectable.transform.SetParent(collectableParent.transform);
-                tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1]));
+                tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1])) + platformDefaultTransform * platformIndex;
                 tempCollectable.transform.gameObject.SetActive(true);
             }
             foreach (var obstacle in platform.obstacles)
@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
                 PoolManager.instance.obstacles.RemoveAt(PoolManager.instance.obstacles.Count - 1);
 
                 tempObstacle.transform.SetParent(obstacleParent.transform);
-                tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1]));
+                tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1])) + platformDefaultTransform * platformIndex;
                 tempObstacle.transform.gameObject.SetActive(true);
             }
 
@@ -91,8 +91,17 @@ public class LevelManager : MonoBehaviour
 
     public void SetLevelVariables()
     {
+        int collectablesCount = 0;
         GameManager.winGold = levelDatas[GameManager.levelNumber].winGold;
         GameManager.minimumGold = levelDatas[GameManager.levelNumber].minimumGold;
+
+        /*foreach (var platform in levelDatas[GameManager.levelNumber].platforms)
+        {
+            collectablesCount += platform.collectables.Length;
+        }
+        GameManager.chakraFillValue = (float)100 / ((float)(collectablesCount*100));*/
+
+
     }
 
     public void SetTextValues()
@@ -129,11 +138,13 @@ public class Platform
 public class Obstacle
 {
     public string position;
+    public float type;
 }
 
 [System.Serializable]
 public class Collectable
 {
     public string position;
+    public float type;
 }
 

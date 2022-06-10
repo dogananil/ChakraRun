@@ -7,9 +7,6 @@ using UnityEngine;
 public class ButtonHandler : MonoBehaviour
 {
     public Coroutine coroutine;
-    private int unitCounter = 0;
-    private int teamLayoutIndex = 0;
-    private int characterPrice = 0;
     
     public GameObject goldImage;
     public Transform startGoldPosition, finishGoldPosition;
@@ -37,17 +34,18 @@ public class ButtonHandler : MonoBehaviour
     {
         GameManager.isGameStart = true;
         Character.instance.ChangeAnimation(isGameStart: GameManager.isGameStart);
+        UiManager.instance.chakraFillBar.fillAmount = 0;
         UiManager.instance.StartPanel.SetActive(false);
         UiManager.instance.gameScreenPanel.SetActive(true);
 
-     
+
     }
     public void btn_NextLevelClick()
     {
         StartCoroutine(goldAnimation());
         UiManager.instance.fx_WinConfetti.SetActive(false);
         PoolManager.instance.ResetPool();
-        /*UiManager.instance.powerUpImage.fillAmount = 0;*/
+        UiManager.instance.chakraFillBar.fillAmount = 0;
 
         GameManager.levelNumber++;
         PlayerPrefs.SetInt("LevelNumber", GameManager.levelNumber);
@@ -70,7 +68,7 @@ public class ButtonHandler : MonoBehaviour
     public void btn_RestartLevelClick()
     {
         PoolManager.instance.ResetPool();
-        //UiManager.instance.powerUpImage.fillAmount = 0;
+        UiManager.instance.chakraFillBar.fillAmount = 0;
 
         GameManager.ResetDefaults();
         GameManager.totalGold += GameManager.minimumGold;
