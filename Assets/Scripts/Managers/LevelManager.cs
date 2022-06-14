@@ -15,10 +15,14 @@ public class LevelManager : MonoBehaviour
 
 
     public List<PlatformScript> currentLevelPlatforms;
-    public List<CollectableScript> currentLevelCollectables;
-    public List<ObstacleScript> currentLevelObstacles;
 
-    public GameObject mainParent;
+    public List<CollectableScript> currentLevelCollectables_Type1;
+    public List<CollectableScript> currentLevelCollectables_Type2;
+    public List<CollectableScript> currentLevelCollectables_Type3;
+
+    public List<ObstacleScript> currentLevelObstacles_Type1;
+    public List<ObstacleScript> currentLevelObstacles_Type2;
+    public List<ObstacleScript> currentLevelObstacles_Type3;
 
     private Vector3 mainParentDefaultTransform = new Vector3(0f, 0f, 1f);
     private Vector3 platformDefaultTransform = new Vector3(0f, 0f, 60f);
@@ -31,6 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
 
     public void LoadLevels()
@@ -45,7 +50,6 @@ public class LevelManager : MonoBehaviour
     {
         SetLevelVariables();
         SetTextValues();
-        mainParent.transform.position = mainParentDefaultTransform;
         int platformIndex = 0;
 
         foreach (var platform in levelDatas[GameManager.levelNumber].platforms)
@@ -61,47 +65,92 @@ public class LevelManager : MonoBehaviour
             foreach (var collectable in platform.collectables)
             {
                 var collectablePosition = collectable.position.Split('#');
+                var collectableType = collectable.type;
+                GameManager.levelCollectableCount++;
+                if (collectableType == 1)
+                {
+                    currentLevelCollectables_Type1.Add(PoolManager.instance.collectables_Type1[PoolManager.instance.collectables_Type1.Count - 1]);
+                    CollectableScript tempCollectable = currentLevelCollectables_Type1[currentLevelCollectables_Type1.Count - 1];
+                    PoolManager.instance.collectables_Type1.RemoveAt(PoolManager.instance.collectables_Type1.Count - 1);
 
-                currentLevelCollectables.Add(PoolManager.instance.collectables[PoolManager.instance.collectables.Count - 1]);
-                CollectableScript tempCollectable = currentLevelCollectables[currentLevelCollectables.Count - 1];
-                PoolManager.instance.collectables.RemoveAt(PoolManager.instance.collectables.Count - 1);
+                    tempCollectable.transform.SetParent(collectableParent.transform);
+                    tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempCollectable.transform.gameObject.SetActive(true);
+                }
+                else if (collectableType == 2)
+                {
+                    currentLevelCollectables_Type2.Add(PoolManager.instance.collectables_Type2[PoolManager.instance.collectables_Type2.Count - 1]);
+                    CollectableScript tempCollectable = currentLevelCollectables_Type2[currentLevelCollectables_Type2.Count - 1];
+                    PoolManager.instance.collectables_Type2.RemoveAt(PoolManager.instance.collectables_Type2.Count - 1);
 
-                tempCollectable.transform.SetParent(collectableParent.transform);
-                tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1])) + platformDefaultTransform * platformIndex;
-                tempCollectable.transform.gameObject.SetActive(true);
+                    tempCollectable.transform.SetParent(collectableParent.transform);
+                    tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempCollectable.transform.gameObject.SetActive(true);
+                }
+                else if (collectableType == 3)
+                {
+                    currentLevelCollectables_Type3.Add(PoolManager.instance.collectables_Type3[PoolManager.instance.collectables_Type3.Count - 1]);
+                    CollectableScript tempCollectable = currentLevelCollectables_Type3[currentLevelCollectables_Type3.Count - 1];
+                    PoolManager.instance.collectables_Type3.RemoveAt(PoolManager.instance.collectables_Type3.Count - 1);
+
+                    tempCollectable.transform.SetParent(collectableParent.transform);
+                    tempCollectable.transform.localPosition = new Vector3(float.Parse(collectablePosition[0]), 2f, float.Parse(collectablePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempCollectable.transform.gameObject.SetActive(true);
+                }
+
+
+
             }
             foreach (var obstacle in platform.obstacles)
             {
                 var obstaclePosition = obstacle.position.Split('#');
+                var obstacleType = obstacle.type;
 
-                currentLevelObstacles.Add(PoolManager.instance.obstacles[PoolManager.instance.obstacles.Count - 1]);
-                ObstacleScript tempObstacle = currentLevelObstacles[currentLevelObstacles.Count - 1];
-                PoolManager.instance.obstacles.RemoveAt(PoolManager.instance.obstacles.Count - 1);
+                if (obstacleType == 1)
+                {
+                    currentLevelObstacles_Type1.Add(PoolManager.instance.obstacles_Type1[PoolManager.instance.obstacles_Type1.Count - 1]);
+                    ObstacleScript tempObstacle = currentLevelObstacles_Type1[currentLevelObstacles_Type1.Count - 1];
+                    PoolManager.instance.obstacles_Type1.RemoveAt(PoolManager.instance.obstacles_Type1.Count - 1);
 
-                tempObstacle.transform.SetParent(obstacleParent.transform);
-                tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1])) + platformDefaultTransform * platformIndex;
-                tempObstacle.transform.gameObject.SetActive(true);
+                    tempObstacle.transform.SetParent(obstacleParent.transform);
+                    tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempObstacle.transform.gameObject.SetActive(true);
+                }
+                else if (obstacleType == 2)
+                {
+                    currentLevelObstacles_Type2.Add(PoolManager.instance.obstacles_Type2[PoolManager.instance.obstacles_Type2.Count - 1]);
+                    ObstacleScript tempObstacle = currentLevelObstacles_Type2[currentLevelObstacles_Type2.Count - 1];
+                    PoolManager.instance.obstacles_Type2.RemoveAt(PoolManager.instance.obstacles_Type2.Count - 1);
+
+                    tempObstacle.transform.SetParent(obstacleParent.transform);
+                    tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempObstacle.transform.gameObject.SetActive(true);
+                }
+                else if (obstacleType == 3)
+                {
+                    currentLevelObstacles_Type3.Add(PoolManager.instance.obstacles_Type3[PoolManager.instance.obstacles_Type3.Count - 1]);
+                    ObstacleScript tempObstacle = currentLevelObstacles_Type1[currentLevelObstacles_Type3.Count - 1];
+                    PoolManager.instance.obstacles_Type3.RemoveAt(PoolManager.instance.obstacles_Type3.Count - 1);
+
+                    tempObstacle.transform.SetParent(obstacleParent.transform);
+                    tempObstacle.transform.localPosition = new Vector3(float.Parse(obstaclePosition[0]), 2f, float.Parse(obstaclePosition[1])) + platformDefaultTransform * platformIndex;
+                    tempObstacle.transform.gameObject.SetActive(true);
+                }
+
             }
 
             platformIndex++;
 
         }
+        PoolManager.instance.levelEndObject.transform.position = Vector3.zero + platformDefaultTransform * (platformIndex - 1);
+        PoolManager.instance.levelEndObject.SetActive(true);
 
     }
 
     public void SetLevelVariables()
     {
-        int collectablesCount = 0;
         GameManager.winGold = levelDatas[GameManager.levelNumber].winGold;
         GameManager.minimumGold = levelDatas[GameManager.levelNumber].minimumGold;
-
-        /*foreach (var platform in levelDatas[GameManager.levelNumber].platforms)
-        {
-            collectablesCount += platform.collectables.Length;
-        }
-        GameManager.chakraFillValue = (float)100 / ((float)(collectablesCount*100));*/
-
-
     }
 
     public void SetTextValues()

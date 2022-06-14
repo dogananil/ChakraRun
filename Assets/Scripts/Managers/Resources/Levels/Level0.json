@@ -7,25 +7,25 @@
       "obstacles": [
         {
           "position": "1#31",
-            "type": 0
+            "type": 1
         },
         {
           "position": "2#9",
-          "type": 0
+          "type": 2
         }
       ],
       "collectables": [
         {
           "position": "-4#18",
-          "type": 0
+          "type": 3
         },
         {
           "position": "2#42",
-          "type": 0
+          "type": 2
         },
         {
           "position": "5#21",
-          "type": 0
+          "type":1
         }
       ]
     },
@@ -33,25 +33,25 @@
       "obstacles": [
         {
           "position": "1#31",
-          "type": 0
+          "type": 2
         },
         {
           "position": "2#9",
-          "type": 0
+          "type": 2
         }
       ],
       "collectables": [
         {
           "position": "-4#18",
-          "type": 0
+          "type": 1
         },
         {
           "position": "2#42",
-          "type": 0
+          "type": 1
         },
         {
           "position": "5#21",
-          "type": 0
+          "type": 1
         }
       ]
     }

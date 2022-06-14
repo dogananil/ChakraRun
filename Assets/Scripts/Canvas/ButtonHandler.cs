@@ -60,6 +60,7 @@ public class ButtonHandler : MonoBehaviour
 
 
         UiManager.instance.winScreenPanel.SetActive(false);
+        UiManager.instance.fx_WinConfetti.SetActive(false);
 
         LevelManager.instance.CreateLevel();
 

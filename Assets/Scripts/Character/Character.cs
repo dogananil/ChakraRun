@@ -6,9 +6,19 @@ public class Character : MonoBehaviour
 {
     public int characterLevel = 0;
     public int chakraLevel = 1;
+    public GameObject cloud;
     public Animator animator;
     public static Character instance; 
     public List<GameObject> charakras = new List<GameObject>();
+
+    public GameObject levelEndFx;
+    public Vector3 levelEndFx_DefaultLocalScale;
+
+    public GameObject mainParent;
+    public GameObject characterParent;
+
+
+    public Vector3 characterStartLocation;
 
     private void Awake()
     {
@@ -18,6 +28,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        characterStartLocation = transform.localPosition;
+        levelEndFx_DefaultLocalScale = levelEndFx.transform.localScale;
+    }
     public void ChangeAnimation(bool isGameStart = false, bool isGameEnd = false)
     {
         animator.SetBool(nameof(isGameStart), isGameStart);

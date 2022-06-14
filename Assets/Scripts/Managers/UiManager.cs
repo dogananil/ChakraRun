@@ -17,7 +17,8 @@ public class UiManager : MonoBehaviour
 
     public Image imgGold;
 
-    public List<Image> chakraImages;
+    public List<GameObject> chakraImages;
+    public Image chakraImage;
     public Image chakraFillBar;
     public TextMeshProUGUI tapText;
 

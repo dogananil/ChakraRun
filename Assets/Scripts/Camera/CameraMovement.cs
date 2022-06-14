@@ -6,15 +6,30 @@ public class CameraMovement : MonoBehaviour
 {
     public GameObject Player;
 
-    Vector3 offset;
+    public static Vector3 startingOffset;
+    public static Vector3 levelEndOffset;
+    public static Vector3 cameraStartLocation;
+    public static Quaternion cameraStartRotation;
+
     void Start()
     {
-        //Player = GameObject.FindGameObjectWithTag("Player");
-        offset = transform.position - Player.transform.position;
+        cameraStartLocation = transform.position;
+        cameraStartRotation = transform.rotation;
+        startingOffset = cameraStartLocation - Player.transform.position;
+        levelEndOffset = startingOffset;
     }
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position,
-            new Vector3(Player.transform.position.x, Player.transform.position.y + offset.y, Player.transform.position.z + offset.z), Time.deltaTime * 5f);
+        if (GameManager.isGameEnd == false)
+        {
+            transform.position = Vector3.Lerp(transform.position,
+               new Vector3(Player.transform.position.x, Player.transform.position.y + startingOffset.y, Player.transform.position.z + startingOffset.z), Time.deltaTime * 5f);
+        }
+        else if (GameManager.isLevelEnd == false)
+        {
+
+            transform.position = Vector3.Lerp(transform.position,
+   new Vector3(transform.position.x, Player.transform.position.y + levelEndOffset.y, transform.position.z), Time.deltaTime * 5f);
+        }
     }
 }
