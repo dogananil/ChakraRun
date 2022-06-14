@@ -17,7 +17,8 @@ public class Character : MonoBehaviour
     public GameObject mainParent;
     public GameObject characterParent;
 
-    public GameObject levelUpFx;
+    public ParticleSystem levelUpFx;
+    public List<ParticleSystem> collectableParticles = new List<ParticleSystem>();
 
 
     public Vector3 characterStartLocation;

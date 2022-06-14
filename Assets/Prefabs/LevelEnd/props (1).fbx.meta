@@ -3,7 +3,27 @@ guid: 99e8782274245b040ac1250cea481fbe
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: area_1
+    second: {fileID: 2100000, guid: 334993142a57b1c48b5766c602c85a01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: area_2
+    second: {fileID: 2100000, guid: 4304a06391ca3b74ab91e84ab56a32e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: area_3
+    second: {fileID: 2100000, guid: 70d0fae2d3d57e04db58e8661508cd38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks
+    second: {fileID: 2100000, guid: 396b9664638d1cd448d9285269166795, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

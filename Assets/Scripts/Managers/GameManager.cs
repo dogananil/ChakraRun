@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         collectedItems = 0;
         tapTextScaling_isCalled = false;
         lerpCharacterTo_LevelEndMultipliers_isCalled = false;
+        UiManager.instance.chakraFillBar.transform.parent.gameObject.SetActive(true);
         foreach (var chakra in Character.instance.charakras)
         {
             chakra.gameObject.SetActive(false);

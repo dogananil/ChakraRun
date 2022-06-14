@@ -54,6 +54,32 @@
           "type": 1
         }
       ]
+    },
+    {
+      "obstacles": [
+        {
+          "position": "1#25",
+          "type": 2
+        },
+        {
+          "position": "2#9",
+          "type": 2
+        }
+      ],
+      "collectables": [
+        {
+          "position": "-1#18",
+          "type": 1
+        },
+        {
+          "position": "3#32",
+          "type": 1
+        },
+        {
+          "position": "4#21",
+          "type": 1
+        }
+      ]
     }
   ]
 }

@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698a28915b71f0f4f8da15f33fe9bcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleFx: {fileID: 6283071085581815328}
+  particleFx: {fileID: 6283071085581815331}
   type: 3
 --- !u!135 &5568125831366264951
 SphereCollider:
@@ -291,13 +291,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23dd15b04d89cc8419a63bd0c1b580ac, type: 3}
---- !u!1 &6283071085581815328 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8808610088619469916, guid: 23dd15b04d89cc8419a63bd0c1b580ac, type: 3}
-  m_PrefabInstance: {fileID: 3246967686444622460}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6283071085581815329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8808610088619469917, guid: 23dd15b04d89cc8419a63bd0c1b580ac, type: 3}
+  m_PrefabInstance: {fileID: 3246967686444622460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6283071085581815331 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8808610088619469919, guid: 23dd15b04d89cc8419a63bd0c1b580ac, type: 3}
   m_PrefabInstance: {fileID: 3246967686444622460}
   m_PrefabAsset: {fileID: 0}

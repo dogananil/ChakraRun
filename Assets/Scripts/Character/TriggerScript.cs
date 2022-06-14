@@ -30,8 +30,8 @@ public class TriggerScript : MonoBehaviour
     {
         if (other.tag == "CollectableObject")
         {
-            other.GetComponent<CollectableScript>().particleFx.transform.SetParent(null);
-            other.GetComponent<CollectableScript>().particleFx.SetActive(true);
+            int random = Random.Range(0, Character.instance.collectableParticles.Count);
+            Character.instance.collectableParticles[random].Play();
             other.gameObject.SetActive(false);
             StartCoroutine(LerpPlus1Text());
             if (successText_isCalled == false)
@@ -52,8 +52,8 @@ public class TriggerScript : MonoBehaviour
         }
         else if (other.tag == "ObstacleObject")
         {
-            other.GetComponent<ObstacleScript>().particleFx.transform.SetParent(null);
-            other.GetComponent<ObstacleScript>().particleFx.SetActive(true);
+            int random = Random.Range(0, Character.instance.collectableParticles.Count);
+            Character.instance.collectableParticles[random].Play();
             other.gameObject.SetActive(false);
             StartCoroutine(LerpMinus1Text());
 
@@ -126,17 +126,11 @@ public class TriggerScript : MonoBehaviour
 
         }
 
-        if (Character.instance.chakraLevel > 5)
-            Character.instance.chakraLevel = 5;
+        
 
-        for (int i = 0; i < Character.instance.chakraLevel; i++)
-        {
-            Character.instance.charakras[i].gameObject.SetActive(true);
-        }
-        UiManager.instance.chakraImage.GetComponent<Image>().sprite = UiManager.instance.chakraImages[Character.instance.chakraLevel - 1].GetComponent<SpriteRenderer>().sprite;
         UiManager.instance.chakraFillBar.fillAmount = 0f;
-        Character.instance.chakraLevel++;
-        Character.instance.levelUpFx.gameObject.SetActive(true);
+        
+        
         GameManager.CalculateFillAmount();
         Debug.Log("Chakra Bar is Empty");
     }
@@ -161,6 +155,16 @@ public class TriggerScript : MonoBehaviour
                     if (timeLapse / totalTime >= 1f)
                     {
                         finalFillValue = finalFillValue - GameManager.chakraFillValue;
+                        Character.instance.levelUpFx.Play();
+                        if (Character.instance.chakraLevel > 5)
+                            Character.instance.chakraLevel = 5;
+
+                        for (int i = 0; i < Character.instance.chakraLevel; i++)
+                        {
+                            Character.instance.charakras[i].gameObject.SetActive(true);
+                        }
+                        UiManager.instance.chakraImage.GetComponent<Image>().sprite = UiManager.instance.chakraImages[Character.instance.chakraLevel].GetComponent<SpriteRenderer>().sprite;
+                        Character.instance.chakraLevel++;
                         StartCoroutine(ChakraImageScaling());
                         yield return new WaitForSeconds(1.55f);
                     }
@@ -201,6 +205,7 @@ public class TriggerScript : MonoBehaviour
 
     public IEnumerator LerpTo_MiddlePoint(Collider other)
     {
+        UiManager.instance.chakraFillBar.transform.parent.gameObject.SetActive(false);
         float timeLapse = 0f;
         float totalTime = 1f;
         Vector3 characterStartLocation = Character.instance.transform.position;
@@ -234,6 +239,8 @@ public class TriggerScript : MonoBehaviour
             timeLapse += Time.deltaTime;
             yield return null;
         }
+        Camera.main.transform.position = cameraFinishPosition.position;
+        Camera.main.transform.rotation = cameraFinishPosition.rotation;
         CameraMovement.levelEndOffset = Camera.main.transform.position - Camera.main.GetComponent<CameraMovement>().Player.transform.position;
     }
 
@@ -241,7 +248,7 @@ public class TriggerScript : MonoBehaviour
     {
         float finishPointMultiplier = GameManager.collectedItems / GameManager.levelCollectableCount + testFloat;
         if (finishPointMultiplier >= 0.9f)
-            finishPointMultiplier = 1f;
+            finishPointMultiplier = 1.1f;
 
         GameManager.lerpCharacterTo_LevelEndMultipliers_isCalled = true;
         float timeLapse = 0f;
@@ -262,7 +269,7 @@ public class TriggerScript : MonoBehaviour
             timeLapse += Time.deltaTime;
             yield return null;
         }
-
+        Character.instance.transform.position = characterEndLocation;
         if (finishPointMultiplier < 0.9f)
         {
             GameManager.isLevelEnd = true;

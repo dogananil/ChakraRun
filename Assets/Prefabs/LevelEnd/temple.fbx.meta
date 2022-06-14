@@ -3,7 +3,42 @@ guid: ae175fa1800ecd04e9224e9eab3edee2
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_1
+    second: {fileID: 2100000, guid: b7afb468c617dc544b90b7e4913a4615, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: building_2
+    second: {fileID: 2100000, guid: 1d8ef598d3f5dc44fb2021b40deec3c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: column_1
+    second: {fileID: 2100000, guid: 4838afd277c73fe479a38b0d3a579b85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: column_2
+    second: {fileID: 2100000, guid: d2354474117fc4e4797a3cc74697dd6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fence
+    second: {fileID: 2100000, guid: a5c7f09ef9cc07241927bb3b669a734d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: firecup
+    second: {fileID: 2100000, guid: 27d2f0d5e6803ed43aad0897d4edfa39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lentern
+    second: {fileID: 2100000, guid: 939ec65ca876efc4d98b82146ea4a34c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
