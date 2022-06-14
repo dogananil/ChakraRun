@@ -75,9 +75,10 @@ public class GameManager : MonoBehaviour
 
         Character.instance.transform.localPosition = Character.instance.characterStartLocation;
         Character.instance.cloud.SetActive(false);
-        Character.instance.mainParent.transform.position = Vector3.zero;
+        Character.instance.mainParent.transform.position = new Vector3(0f,0f,1f);
         Character.instance.characterParent.transform.localPosition= Vector3.zero;
         Character.instance.transform.localPosition = Vector3.zero;
+        Character.instance.gameObject.SetActive(false);
         Character.instance.gameObject.SetActive(true);
         Character.instance.levelEndFx.transform.localScale = Character.instance.levelEndFx_DefaultLocalScale;
         Character.instance.levelEndFx.SetActive(false);

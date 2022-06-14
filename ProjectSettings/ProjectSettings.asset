@@ -146,6 +146,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Standalone: com.DefaultCompany.ChakraRun
     iPhone: com.DefaultCompany.ChakraRun
   buildNumber:
     Standalone: 0

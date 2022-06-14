@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
     public GameObject mainParent;
     public GameObject characterParent;
 
+    public GameObject levelUpFx;
+
 
     public Vector3 characterStartLocation;
 

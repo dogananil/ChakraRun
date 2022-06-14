@@ -27,6 +27,10 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI winGoldText;
     public TextMeshProUGUI loseGoldText;
 
+    public List<TextMeshProUGUI> texts;
+    public TextMeshProUGUI txt_Plus1;
+    public TextMeshProUGUI txt_Minus1;
+
     private void Awake()
     {
         if (instance == null)

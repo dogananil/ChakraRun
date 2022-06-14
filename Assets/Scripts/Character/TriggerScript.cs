@@ -13,6 +13,8 @@ public class TriggerScript : MonoBehaviour
     public static float testFloat = 0f;
     private float finalFillValue = 0f;
 
+    private bool successText_isCalled = false;
+
     void Start()
     {
         StartCoroutine(LateStart(0.5f));
@@ -28,8 +30,11 @@ public class TriggerScript : MonoBehaviour
     {
         if (other.tag == "CollectableObject")
         {
-            other.gameObject.SetActive(false);
 
+            other.gameObject.SetActive(false);
+            StartCoroutine(LerpPlus1Text());
+            if (successText_isCalled == false)
+                StartCoroutine(LerpSuccessTexts());
 
             GameManager.collectedItems++;
 
@@ -46,6 +51,9 @@ public class TriggerScript : MonoBehaviour
         }
         else if (other.tag == "ObstacleObject")
         {
+            other.gameObject.SetActive(false);
+            StartCoroutine(LerpMinus1Text());
+
             Character.instance.PlayObstacleDamageAnimation();
             GameManager.collectedItems--;
             if (GameManager.collectedItems <= 0)
@@ -63,7 +71,6 @@ public class TriggerScript : MonoBehaviour
                     finalFillValue = 0f;
                 }
             }
-            other.gameObject.SetActive(false);
         }
         else if (other.tag == "LevelEnd")
         {
@@ -126,6 +133,7 @@ public class TriggerScript : MonoBehaviour
         UiManager.instance.chakraImage.GetComponent<Image>().sprite = UiManager.instance.chakraImages[Character.instance.chakraLevel - 1].GetComponent<SpriteRenderer>().sprite;
         UiManager.instance.chakraFillBar.fillAmount = 0f;
         Character.instance.chakraLevel++;
+        Character.instance.levelUpFx.gameObject.SetActive(true);
         GameManager.CalculateFillAmount();
         Debug.Log("Chakra Bar is Empty");
     }
@@ -282,6 +290,72 @@ public class TriggerScript : MonoBehaviour
             timeLapse += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public IEnumerator LerpSuccessTexts()
+    {
+        successText_isCalled = true;
+        float timeLapse = 0f;
+        float totalTime = 1f;
+
+
+        var randomNumber = Random.Range(0, 3);
+        var randomSuccessText = UiManager.instance.texts[randomNumber];
+
+        Vector3 textStartingLocation = randomSuccessText.transform.localPosition;
+        Vector3 textFinishLocation = textStartingLocation + new Vector3(0f, 750f, 0f);
+
+        randomSuccessText.gameObject.SetActive(true);
+        while (timeLapse < totalTime)
+        {
+            randomSuccessText.transform.localPosition = Vector3.Lerp(textStartingLocation, textFinishLocation, timeLapse / totalTime);
+            timeLapse += Time.deltaTime;
+            yield return null;
+        }
+        randomSuccessText.gameObject.SetActive(false);
+        randomSuccessText.transform.localPosition = textStartingLocation;
+
+        successText_isCalled = false;
+    }
+
+    public IEnumerator LerpPlus1Text()
+    {
+        float timeLapse = 0f;
+        float totalTime = 0.8f;
+        var txt_Plus1 = UiManager.instance.txt_Plus1;
+        txt_Plus1.gameObject.SetActive(true);
+
+        Vector3 StartingLocation = txt_Plus1.transform.localPosition;
+        Vector3 FinishLocation = StartingLocation + new Vector3(0f, -15f, 0f);
+
+        while (timeLapse < totalTime)
+        {
+            txt_Plus1.transform.localPosition = Vector3.Lerp(StartingLocation, FinishLocation, timeLapse / totalTime);
+            timeLapse += Time.deltaTime;
+            yield return null;
+        }
+        txt_Plus1.gameObject.SetActive(false);
+        txt_Plus1.transform.localPosition = StartingLocation;
+    }
+
+    public IEnumerator LerpMinus1Text()
+    {
+        float timeLapse = 0f;
+        float totalTime = 0.8f;
+        var txt_Minus1 = UiManager.instance.txt_Minus1;
+        txt_Minus1.gameObject.SetActive(true);
+
+        Vector3 StartingLocation = txt_Minus1.transform.localPosition;
+        Vector3 FinishLocation = StartingLocation + new Vector3(0f, -15f, 0f);
+
+        while (timeLapse < totalTime)
+        {
+            txt_Minus1.transform.localPosition = Vector3.Lerp(StartingLocation, FinishLocation, timeLapse / totalTime);
+            timeLapse += Time.deltaTime;
+            yield return null;
+        }
+        txt_Minus1.gameObject.SetActive(false);
+        txt_Minus1.transform.localPosition = StartingLocation;
     }
 
 }

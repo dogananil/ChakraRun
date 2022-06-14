@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollectableScript : MonoBehaviour
 {
+    public GameObject particleFx;
     public int type;
 
     public void Update()
