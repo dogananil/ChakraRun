@@ -30,7 +30,8 @@ public class TriggerScript : MonoBehaviour
     {
         if (other.tag == "CollectableObject")
         {
-
+            other.GetComponent<CollectableScript>().particleFx.transform.SetParent(null);
+            other.GetComponent<CollectableScript>().particleFx.SetActive(true);
             other.gameObject.SetActive(false);
             StartCoroutine(LerpPlus1Text());
             if (successText_isCalled == false)
@@ -51,6 +52,8 @@ public class TriggerScript : MonoBehaviour
         }
         else if (other.tag == "ObstacleObject")
         {
+            other.GetComponent<ObstacleScript>().particleFx.transform.SetParent(null);
+            other.GetComponent<ObstacleScript>().particleFx.SetActive(true);
             other.gameObject.SetActive(false);
             StartCoroutine(LerpMinus1Text());
 
