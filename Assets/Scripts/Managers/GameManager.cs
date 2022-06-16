@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Gold", 0);
         PlayerPrefs.SetInt("LevelNumber", 0);
         PlayerPrefs.Save();
-
+        UiManager.instance.TapToPlay();
 
 
 
@@ -42,6 +42,16 @@ public class GameManager : MonoBehaviour
         totalLevelCount = LevelManager.levelDatas.Count;
         LevelManager.instance.CreateLevel();
 
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            if(isGameStart==false)
+            {
+                StartGame();
+            }
+        }
     }
     private void LoadPrefs()
     {
@@ -107,5 +117,14 @@ public class GameManager : MonoBehaviour
         }
 
         chakraFillValue = Mathf.Pow(3, Character.instance.chakraLevel) - tempSum + 1;
+    }
+    public void StartGame()
+    {
+        isGameStart = true;
+        Character.instance.ChangeAnimation(isGameStart: GameManager.isGameStart);
+        UiManager.instance.chakraFillBar.fillAmount = 0;
+        UiManager.instance.StartPanel.SetActive(false);
+        UiManager.instance.gameScreenPanel.SetActive(true);
+        StartCoroutine(Camera.main.GetComponent<CameraMovement>().CameraGameStartMovement());
     }
 }

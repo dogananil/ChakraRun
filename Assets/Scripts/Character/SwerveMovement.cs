@@ -11,6 +11,7 @@ public class SwerveMovement : MonoBehaviour
     [SerializeField] private GameObject getMiddlePoint;
 
     [SerializeField] private float radius;
+    [SerializeField] private Transform m_PlayerTransform;
 
     Vector3 centerPosition;
 
@@ -27,7 +28,22 @@ public class SwerveMovement : MonoBehaviour
 
 
             float swerveAmount = Time.deltaTime * swerveSpeed * _swerveInputSystem.MoveFactorX;
-
+            if(Input.GetMouseButton(0))
+            {
+                if (_swerveInputSystem.MoveFactorX < 0)
+                {
+                    m_PlayerTransform.rotation = Quaternion.Lerp(m_PlayerTransform.rotation, Quaternion.Euler(0, -20, 0), 0.125f);
+                }
+                else
+                {
+                    m_PlayerTransform.rotation = Quaternion.Lerp(m_PlayerTransform.rotation, Quaternion.Euler(0, 20, 0), 0.125f);
+                }
+            }
+            else
+            {
+                m_PlayerTransform.rotation = Quaternion.Lerp(m_PlayerTransform.rotation, Quaternion.Euler(0, 0, 0), 0.125f);
+            }
+            
             transform.Translate(swerveAmount, 0, 0);
 
 

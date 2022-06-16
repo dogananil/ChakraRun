@@ -57,7 +57,7 @@ public class PoolManager : MonoBehaviour
             obstacles_Type3.Add(tempObstacle);
         }
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 100; i++)
         {
             CollectableScript tempCollectable = Instantiate(collectable_Type1, this.transform);
             tempCollectable.gameObject.SetActive(false);

@@ -30,16 +30,7 @@ public class ButtonHandler : MonoBehaviour
             Destroy(tempGold.gameObject);
         }
     }
-    public void btn_StartClick()
-    {
-        GameManager.isGameStart = true;
-        Character.instance.ChangeAnimation(isGameStart: GameManager.isGameStart);
-        UiManager.instance.chakraFillBar.fillAmount = 0;
-        UiManager.instance.StartPanel.SetActive(false);
-        UiManager.instance.gameScreenPanel.SetActive(true);
-
-
-    }
+    
     public void btn_NextLevelClick()
     {
         StartCoroutine(goldAnimation());

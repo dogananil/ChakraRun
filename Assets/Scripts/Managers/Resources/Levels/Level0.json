@@ -5,78 +5,80 @@
   "platforms": [
     {
       "obstacles": [
-        {
-          "position": "1#31",
-            "type": 1
-        },
-        {
-          "position": "2#9",
-          "type": 2
-        }
+        
+        
       ],
       "collectables": [
         {
-          "position": "-4#18",
-          "type": 3
+          "position": "0#40",
+          "type": 1
         },
         {
-          "position": "2#42",
-          "type": 2
+          "position": "1#50",
+          "type": 1
         },
         {
-          "position": "5#21",
+          "position": "2#60",
           "type":1
         }
       ]
     },
     {
       "obstacles": [
-        {
-          "position": "1#31",
-          "type": 2
-        },
-        {
-          "position": "2#9",
-          "type": 2
-        }
+        
+        
       ],
       "collectables": [
-        {
-          "position": "-4#18",
+      {
+          "position": "3#10",
           "type": 1
         },
         {
-          "position": "2#42",
+          "position": "4#20",
           "type": 1
         },
         {
-          "position": "5#21",
+          "position": "3#30",
+          "type":1
+        },
+        {
+          "position": "2#40",
           "type": 1
+        },
+        {
+          "position": "1#50",
+          "type": 1
+        },
+        {
+          "position": "0#60",
+          "type":1
         }
       ]
     },
-    {
+      {
       "obstacles": [
-        {
-          "position": "1#25",
-          "type": 2
-        },
-        {
-          "position": "2#9",
-          "type": 2
-        }
+        
+        
       ],
       "collectables": [
-        {
-          "position": "-1#18",
+      {
+          "position": "-1#10",
           "type": 1
         },
         {
-          "position": "3#32",
+          "position": "-2#20",
           "type": 1
         },
         {
-          "position": "4#21",
+          "position": "-3#30",
+          "type":1
+        },
+        {
+          "position": "-4#40",
+          "type": 1
+        },
+        {
+          "position": "-5#50",
           "type": 1
         }
       ]
